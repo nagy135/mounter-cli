@@ -11,7 +11,8 @@ Dialog::~Dialog(){
 }
 
 int Dialog::fetch_response(string title, int height, int width, int starty, int startx, string choices[], int num_choices){
-    main_win = newwin(height, width, starty, startx);
+    if ( num_choices == 0 ) return -1;
+    main_win = newwin(num_choices + 4, width, starty, startx);
     box(main_win, 0 , 0);
     wrefresh(main_win);
     keypad(main_win, true);
