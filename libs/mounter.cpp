@@ -147,5 +147,5 @@ void Mounter::umount(int height, int width, int starty, int startx){
 
     string mount_command = "umount " + mntp_arr[mntp_id];
     exec(mount_command.c_str());
-    cout << "Sucessfully unmounted " + trim(mntp_arr[mntp_id]);
+    cout << "Successfully unmounted " + trim(mntp_arr[mntp_id]);
 }
