@@ -75,9 +75,14 @@ void Mounter::mount(int height, int width, int starty, int startx){
     string title = "Select device";
     d.clear();
     int device_id = d.fetch_response(title, height, width, starty, startx, device_arr, device_vector.size());
-    if ( device_id == -1 ) {
-        cout << "No device to mount.";
-        return;
+    if ( device_id < 0 ) {
+        if ( device_id == -1 ){
+            cout << "No device to mount.";
+            return;
+        } else if ( device_id == -2 ){
+            cout << "No device selected, terminating ...";
+            return;
+        }
     }
     // GET DEVICE
 
@@ -96,9 +101,14 @@ void Mounter::mount(int height, int width, int starty, int startx){
     title = "Select mountpoint";
     d.clear();
     int mntp_id = d.fetch_response(title, height, width, starty, startx, mntp_arr, mntp_vector.size());
-    if ( mntp_id == -1 ) {
-        cout << "No mountpoint available in /mnt. Maybe none exists or all used.";
-        return;
+    if ( mntp_id < 0 ) {
+        if ( mntp_id == -1 ){
+            cout << "No mountpoint available in /mnt. Maybe none exists or all used.";
+            return;
+        } else if ( mntp_id == -2 ){
+            cout << "No mountpoint selected, terminating ...";
+            return;
+        }
     }
     // GET MOUNTPOINT
 
@@ -125,11 +135,17 @@ void Mounter::umount(int height, int width, int starty, int startx){
     string title = "Select mountpoint";
     d.clear();
     int mntp_id = d.fetch_response(title, height, width, starty, startx, mntp_arr, mntp_vector.size());
-    if ( mntp_id == -1 ) {
-        cout << "No device mounted to /mnt subfolders.";
-        return;
+    if ( mntp_id < 0 ) {
+        if ( mntp_id == -1 ){
+            cout << "No device mounted to /mnt subfolders.";
+            return;
+        } else if ( mntp_id == -2 ){
+            cout << "No mountpoint selected, terminating ...";
+            return;
+        }
     }
 
     string mount_command = "umount " + mntp_arr[mntp_id];
     exec(mount_command.c_str());
+    cout << "Sucessfully unmounted " + trim(mntp_arr[mntp_id]);
 }

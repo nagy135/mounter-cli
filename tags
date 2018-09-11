@@ -4,3 +4,11 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+Mounter	libs/mounter.cpp	/^Mounter::Mounter(int term_width, int term_height){$/;"	f	class:Mounter
+choice	libs/mounter.cpp	/^void Mounter::choice(int height, int width, int starty, int startx){$/;"	f	class:Mounter
+exec	libs/mounter.cpp	/^string exec(const char* cmd) {$/;"	f
+ltrim	libs/mounter.cpp	/^string& ltrim(string& str, const string& chars = "\\t\\n\\v\\f\\r ")$/;"	f
+mount	libs/mounter.cpp	/^void Mounter::mount(int height, int width, int starty, int startx){$/;"	f	class:Mounter
+rtrim	libs/mounter.cpp	/^string& rtrim(string& str, const string& chars = "\\t\\n\\v\\f\\r ")$/;"	f
+trim	libs/mounter.cpp	/^string& trim(string& str, const string& chars = "\\t\\n\\v\\f\\r ")$/;"	f
+umount	libs/mounter.cpp	/^void Mounter::umount(int height, int width, int starty, int startx){$/;"	f	class:Mounter

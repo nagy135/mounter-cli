@@ -57,7 +57,7 @@ int Dialog::fetch_response(string title, int height, int width, int starty, int 
                 highlight++;
                 break;
             case (int)'q':
-                return -1;
+                return -2;
             case KEY_DOWN:
                 highlight++;
                 break;
