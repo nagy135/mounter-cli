@@ -10,17 +10,29 @@ Dialog::Dialog(){
 Dialog::~Dialog(){
 }
 
-int Dialog::fetch_response(string title, int height, int width, int starty, int startx, string choices[], int num_choices){
+int Dialog::fetch_response( string title, int height, int width, int starty, int startx, string choices[], int num_choices ){
     if ( num_choices == 0 ) return -1;
+    int longest = 0;
+    // Resize when needed
+    for (int i = 0; i < num_choices; i++){
+        if ( choices[i].length() > longest ){
+            longest = choices[i].length();
+        }
+    }
+    if ( longest > width ){
+        startx = startx - ( ( longest - width ) / 2 );
+        width = longest + 4;
+    }
+    // Resize when needed
     main_win = newwin(num_choices + 4, width, starty, startx);
     box(main_win, 0 , 0);
     wrefresh(main_win);
     keypad(main_win, true);
 
     int left_padding, right_padding;
-    for (int i=0; i < num_choices; i++){
-        left_padding = (width - 2 - choices[i].length()) / 2;
-        right_padding = (width - 2 - choices[i].length()) - left_padding;
+    for ( int i=0; i < num_choices; i++ ){
+        left_padding = ( width - 2 - choices[i].length() ) / 2;
+        right_padding = ( width - 2 - choices[i].length() ) - left_padding;
         choices[i] = string(left_padding,' ') + choices[i] + string(right_padding, ' ');
     }
     int highlight = 0;
@@ -29,7 +41,7 @@ int Dialog::fetch_response(string title, int height, int width, int starty, int 
     int clear = 0;
     title = " " + title + " ";
     while(1){
-        for (int i=0; i < num_choices; i++){
+        for ( int i=0; i < num_choices; i++ ){
             if (i == highlight){
                 wattron(main_win, A_REVERSE);
             }
