@@ -80,7 +80,7 @@ void Mounter::mount(int height, int width, int starty, int startx){
             cout << "No device to mount.";
             return;
         } else if ( device_id == -2 ){
-            cout << "No device selected, terminating ...";
+            cout << "No device selected, tttterminating ...";
             return;
         }
     }
