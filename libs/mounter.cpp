@@ -44,21 +44,25 @@ string& trim(string& str, const string& chars = "\t\n\v\f\r ")
 }
 
 Mounter::Mounter(int term_width, int term_height){
-    Mounter::choice(7,35, term_height/2-3, term_width/2-17);
+    height = 7;
+    width = 50;
+    starty = term_height/2-3;
+    startx = term_width/2-25;
+    Mounter::choice();
 }
-void Mounter::choice(int height, int width, int starty, int startx){
+void Mounter::choice(){
     int num_choices = 2;
     string choices[2] {"MOUNT", "UNMOUNT"};
     string title = "Choose action";
     int response;
     response = d.fetch_response(title, height, width, starty, startx, choices, num_choices);
     if ( response == 0 ){
-        Mounter::mount(height, width, starty, startx);
+        Mounter::mount();
     } else if ( response == 1 ){
-        Mounter::umount(height, width, starty, startx);
+        Mounter::umount();
     }
 }
-void Mounter::mount(int height, int width, int starty, int startx){
+void Mounter::mount(){
     // GET DEVICE
     string devices = exec("lsblk -p -l | grep part | grep -e 'part $' | awk '{print $1}' | tr '\n' ' ' | sed 's/,$//'");
     vector<string> device_vector;
@@ -119,7 +123,7 @@ void Mounter::mount(int height, int width, int starty, int startx){
     cout << "Mounted device " << trim(device_arr[device_id]) << " to mountpoint " << trim(mntp_arr[mntp_id]);
 }
 
-void Mounter::umount(int height, int width, int starty, int startx){
+void Mounter::umount(){
     string used_mount_points = exec("lsblk -p -l | grep part | grep -v boot/efi | grep -v -e 'part /$' | grep -v SWAP | grep 'part /' | awk '{print $7}' | tr '\n' ' ' | sed 's/.$//'");
     vector<string> mntp_vector;
     stringstream ss(used_mount_points);
