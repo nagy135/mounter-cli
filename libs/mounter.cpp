@@ -75,7 +75,10 @@ void Mounter::mount(int height, int width, int starty, int startx){
     string title = "Select device";
     d.clear();
     int device_id = d.fetch_response(title, height, width, starty, startx, device_arr, device_vector.size());
-    if ( device_id == -1 ) return;
+    if ( device_id == -1 ) {
+        cout << "No device to mount.";
+        return;
+    }
     // GET DEVICE
 
     // GET MOUNTPOINT
@@ -93,7 +96,10 @@ void Mounter::mount(int height, int width, int starty, int startx){
     title = "Select mountpoint";
     d.clear();
     int mntp_id = d.fetch_response(title, height, width, starty, startx, mntp_arr, mntp_vector.size());
-    if ( mntp_id == -1 ) return;
+    if ( mntp_id == -1 ) {
+        cout << "No mountpoint available in /mnt. Maybe none exists or all used.";
+        return;
+    }
     // GET MOUNTPOINT
 
     // MOUNT
@@ -119,7 +125,10 @@ void Mounter::umount(int height, int width, int starty, int startx){
     string title = "Select mountpoint";
     d.clear();
     int mntp_id = d.fetch_response(title, height, width, starty, startx, mntp_arr, mntp_vector.size());
-    if ( mntp_id == -1 ) return;
+    if ( mntp_id == -1 ) {
+        cout << "No device mounted to /mnt subfolders.";
+        return;
+    }
 
     string mount_command = "umount " + mntp_arr[mntp_id];
     exec(mount_command.c_str());
