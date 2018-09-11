@@ -1,13 +1,13 @@
 # mounter-cli
-CLI app to mount and unmount devices made in ncurses
+ncurses based c++ program to mount/unmount devices quickly
 
-## installation
-git clone https://github.com/nagy135/mounter-cli
-cd mounter-cli
-make
+## Installation
+git clone https://github.com/nagy135/mounter-cli  
+cd mounter-cli  
+make  
 
 
-## usage
-switch to root or run with sudo
-
+## Usage
+switch to root or run with sudo  
+  
 sudo mounter-cli
