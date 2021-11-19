@@ -1,6 +1,8 @@
 # mounter-cli
 ncurses based c++ program to mount/unmount devices quickly
 
+![init screen](doc/init_screen.png)
+
 ## current state
 I no longer use this app, but it is working on my setup (I somehow prefer doing this manually).
 If you need some nice example of C++ program using ncurses
@@ -13,6 +15,7 @@ make
 
 
 ## Usage
-switch to root or run with sudo  
+switch to root or run with sudo
+![mount umount choice](doc/mount_umount.png)
   
 sudo mounter-cli
